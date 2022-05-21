@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useRef, useState } from 'react';
+import { Portal } from './components/Portal';
+import Shortcut from './components/Shortcut';
+import { useOnClickOutside } from './hooks/useClickOutside';
 
-function App() {
+const data = [
+  { text: 'apple', default: true, onClick: (val) => console.log(val) },
+  { text: 'banana', default: true, onClick: (val) => console.log(val) },
+  { text: 'cucumber', default: true, onClick: (val) => console.log(val) },
+  { text: 'watermelon', onClick: (val) => console.log(val) },
+]
+
+export default function App() {
+  const [visibility, setVisibility] = useState(true);
+  // const eventRef = useRef();
+  const dialogRef = useRef();
+  useOnClickOutside(dialogRef, () => setVisibility(false));
+
+  const handleShortcutKey = (e) => {
+    if (e.metaKey && e.keyCode === 107) {
+      setVisibility(prev => !prev);
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('keypress', handleShortcutKey);
+    return () => {
+      window.removeEventListener('keypress', handleShortcutKey);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (visibility) document.body.classList.add("hidden-scroll");
+    else document.body.classList.remove("hidden-scroll");
+  }, [visibility])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {visibility && <Portal>
+        <Shortcut
+          ref={dialogRef}
+          visibility={visibility}
+          data={data}
+        />
+      </Portal>}
     </div>
   );
 }
-
-export default App;
