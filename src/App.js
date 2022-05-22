@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Portal } from './components/Portal';
 import Shortcut from './components/Shortcut';
 import { useOnClickOutside } from './hooks/useClickOutside';
+import Backdrop from './assets/backdrop.jpg';
 
 const data = [
   { text: 'arrangement', default: true, onClick: (val) => console.log(val) },
@@ -56,6 +57,7 @@ export default function App() {
 
   return (
     <div>
+      <img src={Backdrop} alt='' style={{ width: '100vw' }}/>
       {visibility && <Portal>
         <Shortcut
           ref={dialogRef}

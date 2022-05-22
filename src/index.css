@@ -34,17 +34,43 @@ code {
   align-items: center; 
 }
 
-.react-shortcut {
+.react-shortcut-filter {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  backdrop-filter: blur(5px);
+  z-index: 2;
+} 
+
+.react-shortcut-container {
   border: 1px solid rgb(207, 207, 207);
   border-radius: 8px;
   width: auto;
   min-width: 500px;
-  min-height: 30px;
-  overflow: hidden;
+  min-height: 450px;
+  max-height: 450px;
+  overflow: auto;
   position: relative;
+  z-index: 3;
+  background-color: #fff;
 }
 
-.react-shortcut input {
+.react-shortcut-search-container {
+  display: flex;
+  justify-items: start;
+  align-items: center;
+  background-color: #fff;
+  position: sticky;
+  top: 0px;
+  border-bottom: 1px solid rgb(231, 231, 231);
+}
+
+.react-shortcut-search-icon {
+  padding-left: 10px;
+  height: 20px;
+}
+
+.react-shortcut-search-input {
   outline: none;
   padding: 10px;
   width: 100%;
@@ -57,11 +83,19 @@ code {
   color: rgb(48, 48, 48);
 }
 
+.react-shortcut-items-container {
+  height: 100%;
+  overflow-y: auto;
+}
+
 .react-shortcut-item {
   padding: 10px;
-  border-top: 1px solid rgb(231, 231, 231);
+  border-bottom: 1px solid rgb(231, 231, 231);
   cursor: pointer;
   transition-duration: 250ms;
+  background-color: #fff;
+  font-size: 14px;
+  color: rgb(78, 78, 78);
 }
 
 .react-shortcut-item:hover {
@@ -71,4 +105,13 @@ code {
 .react-shortcut-item:focus {
   outline: none;
   border: 1px solid red;
+}
+
+.react-shortcut-items-none {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(169, 169, 169);
+  font-size: 14px;
 }
