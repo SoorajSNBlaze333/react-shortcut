@@ -9,7 +9,7 @@ const Shortcut = forwardRef(({ visibility, data = [], lastKeyPressed }, ref) => 
   }, [visibility]);
 
   useEffect(() => {
-    console.log(lastKeyPressed);
+    // console.log(lastKeyPressed);
   }, [lastKeyPressed])
 
   const renderData = (item, index) => {
