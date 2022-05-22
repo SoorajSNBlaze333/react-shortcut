@@ -67,3 +67,8 @@ code {
 .react-shortcut-item:hover {
   background-color: rgb(246, 246, 246);
 }
+
+.react-shortcut-item:focus {
+  outline: none;
+  border: 1px solid red;
+}
